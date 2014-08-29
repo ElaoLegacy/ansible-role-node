@@ -13,8 +13,15 @@
   apt: >
     pkg={{ item }}
     state=absent
+    purge=yes
   with_items:
     - nodejs-legacy
+  sudo: yes
+
+- name: packages pinning
+  template: >
+    src=pinning.j2
+    dest=/etc/apt/preferences.d/nodejs
   sudo: yes
 
 - name: repositories key
@@ -35,8 +42,7 @@
 - name: packages
   apt: >
     pkg={{ item }}
-    state=present
-    force=true
+    state=latest
   with_items:
     - nodejs
   sudo: yes
