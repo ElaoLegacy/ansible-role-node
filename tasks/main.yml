@@ -1,0 +1,42 @@
+---
+
+- name: packages dependencies
+  apt: >
+    pkg={{ item }}
+    state=present
+    force=true
+  with_items:
+    - apt-transport-https
+  sudo: yes
+
+- name: packages undependencies
+  apt: >
+    pkg={{ item }}
+    state=absent
+  with_items:
+    - nodejs-legacy
+  sudo: yes
+
+- name: repositories key
+  apt_key: >
+    url=https://deb.nodesource.com/gpgkey/nodesource.gpg.key
+    state=present
+  sudo: yes
+
+- name: repositories
+  apt_repository: >
+    repo="{{ item }}"
+    state=present
+    update_cache=yes
+  with_items:
+    - deb https://deb.nodesource.com/node {{ ansible_lsb.codename }} main
+  sudo: yes
+
+- name: packages
+  apt: >
+    pkg={{ item }}
+    state=present
+    force=true
+  with_items:
+    - nodejs
+  sudo: yes
