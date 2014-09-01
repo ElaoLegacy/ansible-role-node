@@ -2,7 +2,7 @@
 
 - name: packages dependencies
   apt: >
-    pkg={{ item }}
+    name={{ item }}
     state=present
     force=true
   with_items:
@@ -11,7 +11,7 @@
 
 - name: packages undependencies
   apt: >
-    pkg={{ item }}
+    name={{ item }}
     state=absent
     purge=yes
   with_items:
@@ -41,7 +41,7 @@
 
 - name: packages
   apt: >
-    pkg={{ item }}
+    name={{ item }}
     state=latest
   with_items:
     - nodejs
