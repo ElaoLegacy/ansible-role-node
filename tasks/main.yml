@@ -36,7 +36,7 @@
     state=present
     update_cache=yes
   with_items:
-    - deb https://deb.nodesource.com/node {{ ansible_lsb.codename }} main
+    - deb https://deb.nodesource.com/node {{ ansible_distribution_release }} main
   sudo: yes
 
 - name: packages
