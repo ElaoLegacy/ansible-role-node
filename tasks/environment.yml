@@ -1,0 +1,20 @@
+---
+
+# Solve npm compilation issue on nfs
+# See: https://github.com/TooTallNate/node-gyp/issues/147#issuecomment-10895149
+
+- name: environment
+  lineinfile: >
+    dest=/etc/environment
+    line='LINK=g++'
+    state=present
+  when: elao_vagrant
+  sudo: yes
+
+- name: environment not
+  lineinfile: >
+    dest=/etc/environment
+    line='LINK=g++'
+    state=absent
+  when: not elao_vagrant
+  sudo: yes

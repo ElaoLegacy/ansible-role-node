@@ -1,0 +1,13 @@
+---
+
+- name: zprofile directory
+  file: >
+    path=/etc/zprofile.d
+    state=directory
+  sudo: yes
+
+- name: path zprofile
+  template: >
+    src=zprofile.zsh.j2
+    dest=/etc/zprofile.d/node.zsh
+  sudo: yes
