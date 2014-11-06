@@ -47,6 +47,16 @@
     - nodejs
   sudo: yes
 
+- name: packages npm
+  npm: >
+    name={{ item }}
+    state=present
+    global=yes
+    version=2
+  with_items:
+    - npm
+  sudo: yes
+
 - name: sudo
   template: >
     src=node_env.j2
