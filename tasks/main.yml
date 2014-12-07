@@ -2,4 +2,3 @@
 
 - include: packages.yml
 - include: path.yml
-- include: environment.yml
